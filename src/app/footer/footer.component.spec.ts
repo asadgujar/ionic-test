@@ -1,22 +1,44 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { IonicModule } from '@ionic/angular';
+/* tslint:disable:no-unused-variable */
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FooterComponent } from './footer.component';
+import { IonicModule } from '@ionic/angular';
 
 describe('FooterComponent', () => {
   let component: FooterComponent;
   let fixture: ComponentFixture<FooterComponent>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FooterComponent ],
+      declarations: [FooterComponent],
       imports: [IonicModule.forRoot()]
-    }).compileComponents();
+    })
+      .compileComponents();
+  }));
 
+  beforeEach(() => {
     fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
+
+
+  it('should have the correct number of links', () => {
+    const links = fixture.nativeElement.querySelectorAll('ion-item');
+    expect(links.length).toBe(5); 
+  });
+
+  it('should have the subscribe button', () => {
+    const button = fixture.nativeElement.querySelector('.subscribe');
+    expect(button).toBeTruthy();
+  });
+
+  it('should have the privacy policy link', () => {
+    const privacyPolicyLink = fixture.nativeElement.querySelector('ion-item[label="Privacy Policy"]');
+    expect(privacyPolicyLink).toBeTruthy();
+  });
+
+
 
   it('should create', () => {
     expect(component).toBeTruthy();
